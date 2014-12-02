@@ -1,0 +1,10 @@
+This is a work in progress and has only been tested on AOL 9.7.
+
+Install Visual Studio 2013 Community Edition here: http://go.microsoft.com/?linkid=9863608
+
+Request a spotify developer key here, it's instant: https://devaccount.spotify.com/my-account/
+Save the binary key to ~/qwik.spotify/spotify_appkey.key
+
+Choose a playlist with `pl <playlist name>` and `plr` to randomly play a song from the selected playlist.
+
+Come hang out in pr vb.

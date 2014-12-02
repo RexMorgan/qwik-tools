@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{57C96D1C-41A7-4DD0-958B-AFED00D13861}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>qwik.coms</RootNamespace>
+    <AssemblyName>qwik.coms</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4">
+      <HintPath>..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\AdvertiseCommandHandler.cs" />
+    <Compile Include="Commands\ClearChatCommandHandler.cs" />
+    <Compile Include="Commands\Emotes\HugCommandHandler.cs" />
+    <Compile Include="Commands\BaseCommandHandler.cs" />
+    <Compile Include="Commands\Emotes\LowerCaseCommandHandler.cs" />
+    <Compile Include="Commands\ExitCommandHandler.cs" />
+    <Compile Include="Commands\Handle\GetHandleCommandHandler.cs" />
+    <Compile Include="Commands\ICommandHandler.cs" />
+    <Compile Include="Commands\Idler\IdleStartCommandHandler.cs" />
+    <Compile Include="Commands\Idler\IdleStopCommandHandler.cs" />
+    <Compile Include="Commands\Messages\GetMaxMessagesCommandHandler.cs" />
+    <Compile Include="Commands\Messages\SetMaxMessagesCommandHandler.cs" />
+    <Compile Include="Commands\Music\Playlist\PlayRandomPlaylistSongCommandHandler.cs" />
+    <Compile Include="Commands\Music\Playlist\SetPlaylistCommandHandler.cs" />
+    <Compile Include="Commands\Music\Playlist\GetPlaylistCommandHandler.cs" />
+    <Compile Include="Commands\Music\Search\PlaySearchTrackCommandHandler.cs" />
+    <Compile Include="Commands\Navigation\AimPrivateRoomCommandHandler.cs" />
+    <Compile Include="Commands\Navigation\BaseChatChangingCommandHandler.cs" />
+    <Compile Include="Commands\Navigation\IllegalRoomCommandHandler.cs" />
+    <Compile Include="Commands\Navigation\PrivateRoomCommandHandler.cs" />
+    <Compile Include="Commands\Output\LeftAscii\GetLeftAsciiCommandHandler.cs" />
+    <Compile Include="Commands\Output\LeftAscii\LeftAsciiBoldCommandHandler.cs" />
+    <Compile Include="Commands\Output\LeftAscii\LeftAsciiColorCommandHandler.cs" />
+    <Compile Include="Commands\Output\LeftAscii\SetLeftAsciiCommandHandler.cs" />
+    <Compile Include="Commands\Handle\SetHandleCommandHandler.cs" />
+    <Compile Include="Commands\Output\LeftAscii\LeftAsciiFontCommandHandler.cs" />
+    <Compile Include="Commands\Output\LeftAscii\LeftAsciiItalicCommandHandler.cs" />
+    <Compile Include="Commands\Output\LeftAscii\LeftAsciiUnderlineCommandHandler.cs" />
+    <Compile Include="Commands\ScreenNames\AddScreenNameCommandHandler.cs" />
+    <Compile Include="Commands\ScreenNames\ListScreenNamesCommandHandler.cs" />
+    <Compile Include="Commands\ScreenNames\RemoveScreenNameCommandHandler.cs" />
+    <Compile Include="Commands\Messages\GetMessagesCommandHandler.cs" />
+    <Compile Include="Commands\Messages\RemoveAllMessagesCommandHandler.cs" />
+    <Compile Include="Commands\Secretary\SecretaryToggleCommandHandler.cs" />
+    <Compile Include="Commands\TestCommandHandler.cs" />
+    <Compile Include="Commands\Trigger\GetTriggerCommandHandler.cs" />
+    <Compile Include="Commands\Trigger\SetTriggerCommandHandler.cs" />
+    <Compile Include="Configuration\CommandRegistry.cs" />
+    <Compile Include="Configuration\CoreRegistry.cs" />
+    <Compile Include="Configuration\IdlerRegistry.cs" />
+    <Compile Include="Configuration\OutputRegistry.cs" />
+    <Compile Include="Configuration\SecretaryRegistry.cs" />
+    <Compile Include="Idler\Idler.cs" />
+    <Compile Include="Idler\IdlerFormatter.cs" />
+    <Compile Include="Idler\IIdler.cs" />
+    <Compile Include="Idler\IIdlerFormatter.cs" />
+    <Compile Include="Listener\ChatMessageCommandExtensions.cs" />
+    <Compile Include="Listener\CommandListener.cs" />
+    <Compile Include="Listener\ICommandListener.cs" />
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Output\ChatOutput.cs" />
+    <Compile Include="Output\IOutput.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Secretary\ISecretary.cs" />
+    <Compile Include="Secretary\Secretary.cs" />
+    <Compile Include="SpotifyLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpotifyLogin.Designer.cs">
+      <DependentUpon>SpotifyLogin.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SpotifyLogin.resx">
+      <DependentUpon>SpotifyLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\qwik.chatscan\qwik.chatscan.csproj">
+      <Project>{B0697B69-A89B-4B0B-8AD3-82CB5CD87E66}</Project>
+      <Name>qwik.chatscan</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\qwik.helpers\qwik.helpers.csproj">
+      <Project>{6EA1A5C6-8849-47B6-82CB-23205933C7AC}</Project>
+      <Name>qwik.helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\qwik.spotify\qwik.spotify.csproj">
+      <Project>{02D61216-040D-4F47-AD62-A47AEE9B816F}</Project>
+      <Name>qwik.spotify</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commands\Notes\" />
+    <Folder Include="Notes\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

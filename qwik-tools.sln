@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qwik.chatscan", "qwik.chatscan\qwik.chatscan.csproj", "{B0697B69-A89B-4B0B-8AD3-82CB5CD87E66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qwik.helpers", "qwik.helpers\qwik.helpers.csproj", "{6EA1A5C6-8849-47B6-82CB-23205933C7AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qwik.coms", "qwik.coms\qwik.coms.csproj", "{57C96D1C-41A7-4DD0-958B-AFED00D13861}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qwik.spotify", "qwik.spotify\qwik.spotify.csproj", "{02D61216-040D-4F47-AD62-A47AEE9B816F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0697B69-A89B-4B0B-8AD3-82CB5CD87E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0697B69-A89B-4B0B-8AD3-82CB5CD87E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0697B69-A89B-4B0B-8AD3-82CB5CD87E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0697B69-A89B-4B0B-8AD3-82CB5CD87E66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EA1A5C6-8849-47B6-82CB-23205933C7AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EA1A5C6-8849-47B6-82CB-23205933C7AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EA1A5C6-8849-47B6-82CB-23205933C7AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EA1A5C6-8849-47B6-82CB-23205933C7AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57C96D1C-41A7-4DD0-958B-AFED00D13861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C96D1C-41A7-4DD0-958B-AFED00D13861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C96D1C-41A7-4DD0-958B-AFED00D13861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C96D1C-41A7-4DD0-958B-AFED00D13861}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02D61216-040D-4F47-AD62-A47AEE9B816F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02D61216-040D-4F47-AD62-A47AEE9B816F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02D61216-040D-4F47-AD62-A47AEE9B816F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02D61216-040D-4F47-AD62-A47AEE9B816F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

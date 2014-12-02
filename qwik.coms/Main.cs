@@ -46,8 +46,13 @@ namespace qwik.coms
         {
             lstCommands.Items.AddRange(_commandHandlers.Select(x => string.Join("/", x.Commands)).Cast<object>().ToArray());
 
-            _output.Formatted("qwik.coms¹ loaded by [{0}]", _settings.Handle);
+            _output.Formatted("qwik.coms¹ loaded by [{0}]", _settings.Handle ?? "new user");
             _output.Formatted("{0} commands", _commandHandlers.Count());
+
+            if (string.IsNullOrWhiteSpace(_settings.Handle))
+            {
+                _output.Formatted("type user [handle]");
+            }
 
             try
             {
@@ -75,7 +80,6 @@ namespace qwik.coms
             if (_settings.Secretary) _secretary.Start();
 
             _session.OnLoggedOut += ptr => Application.Exit();
-
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)

@@ -1,0 +1,22 @@
+﻿{
+  "Handle": null,
+  "Trigger": "",
+  "Notes": [],
+  "Messages": [],
+  "MaxMessages": 20,
+  "MessagesPerScreenName": 2,
+  "LeftAscii": "¬",
+  "LeftAsciiColor": "black",
+  "LeftAsciiFont": "arial narrow",
+  "LeftAsciiBold": true,
+  "LeftAsciiItalic": false,
+  "LeftAsciiUnderline": false,
+  "RightAscii": null,
+  "RightAsciiColor": null,
+  "RightAsciiFont": null,
+  "RightAsciiBold": false,
+  "RightAsciiItalic": false,
+  "RightAsciiUnderline": false,
+  "Secretary": false,
+  "SpotifyPlaylist": "College"
+}

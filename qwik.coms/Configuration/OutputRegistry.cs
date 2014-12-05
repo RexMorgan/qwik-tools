@@ -8,6 +8,7 @@ namespace qwik.coms.Configuration
         public OutputRegistry()
         {
             For<IOutput>().Singleton().Use<ChatOutput>();
+            For<IChatRateLimiter>().Singleton().Use<ChatRateLimiter>();
         }
     }
 }

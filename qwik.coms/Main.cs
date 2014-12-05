@@ -1,4 +1,5 @@
-﻿using qwik.coms.Commands;
+﻿using System.Threading;
+using qwik.coms.Commands;
 using qwik.coms.Listener;
 using qwik.coms.Output;
 using qwik.coms.Secretary;
@@ -11,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using StructureMap;
 
 namespace qwik.coms
 {
@@ -22,12 +24,12 @@ namespace qwik.coms
         private readonly IAppSettings _settings;
         private readonly IAppSettingsWriter _settingsWriter;
         private readonly ISecretary _secretary;
-        private readonly IPlayer _player;
         private readonly ISession _session;
+        private readonly IContainer _container;
 
         public Main(IAppSettings settings, IOutput output, ICommandListener commandListener,
             IEnumerable<ICommandHandler> commandHandlers, IAppSettingsWriter settingsWriter,
-            IScreenNameRetriever screenNameRetriever, ISecretary secretary, ISession session, IPlayer player)
+            IScreenNameRetriever screenNameRetriever, ISecretary secretary, ISession session, IContainer container)
         {
             _settings = settings;
             _output = output;
@@ -36,7 +38,7 @@ namespace qwik.coms
             _screenNameRetriever = screenNameRetriever;
             _secretary = secretary;
             _session = session;
-            _player = player;
+            _container = container;
             InitializeComponent();
 
             commandListener.Start();
@@ -45,6 +47,11 @@ namespace qwik.coms
         private void Main_Load(object sender, EventArgs e)
         {
             lstCommands.Items.AddRange(_commandHandlers.Select(x => string.Join("/", x.Commands)).Cast<object>().ToArray());
+
+#if DEBUG
+            var prompt = _container.GetInstance<Prompt>();
+            prompt.Show();
+#endif
 
             _output.Formatted("qwik.coms¹ loaded by [{0}]", _settings.Handle ?? "new user");
             _output.Formatted("{0} commands", _commandHandlers.Count());
@@ -80,11 +87,11 @@ namespace qwik.coms
             if (_settings.Secretary) _secretary.Start();
 
             _session.OnLoggedOut += ptr => Application.Exit();
-        }
-
-        private void Main_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            _output.Formatted("qwik.coms¹ unloaded by [{0}]", _settings.Handle);
+            AppDomain.CurrentDomain.ProcessExit += (s, eventArgs) =>
+            {
+                _output.Formatted("qwik.coms¹ unloaded by [{0}]", _settings.Handle);
+                Thread.Sleep(1000);
+            };
         }
     }
 }

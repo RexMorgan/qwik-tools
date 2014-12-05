@@ -2,6 +2,7 @@
 {
     public enum TimerType
     {
-        Idler = 1
+        ChatSend,
+        Idler
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IOutput
     {
-        void Formatted(string message, params object[] args);
+        void Formatted(string message, params object[] arguments);
     }
 }

@@ -62,7 +62,6 @@
             this.MinimizeBox = false;
             this.Name = "Main";
             this.Text = "qwik.coms¹";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
 

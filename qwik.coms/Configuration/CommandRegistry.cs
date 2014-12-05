@@ -16,6 +16,7 @@ namespace qwik.coms.Configuration
             });
 
             For<ICommandListener>().Singleton().Use<CommandListener>();
+            For<ICommandExecutor>().Singleton().Use<CommandExecutor>();
         }
     }
 }

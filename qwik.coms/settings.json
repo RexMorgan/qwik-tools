@@ -1,4 +1,4 @@
-﻿{
+{
   "Handle": null,
   "Trigger": "",
   "Notes": [],
@@ -18,5 +18,5 @@
   "RightAsciiItalic": false,
   "RightAsciiUnderline": false,
   "Secretary": false,
-  "SpotifyPlaylist": "College"
+  "SpotifyPlaylist": null
 }

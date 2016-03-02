@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace qwik.helpers
+﻿namespace qwik.helpers
 {
     public class Menu
     {

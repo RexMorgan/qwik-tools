@@ -13,10 +13,7 @@ namespace qwik.coms.Commands.Music.Search
             _player = player;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "st" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "st" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {

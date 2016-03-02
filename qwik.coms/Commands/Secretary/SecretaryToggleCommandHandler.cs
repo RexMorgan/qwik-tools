@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using qwik.chatscan;
+﻿using qwik.chatscan;
 using qwik.coms.Output;
 using qwik.coms.Secretary;
 using qwik.helpers.Settings;
+using System.Collections.Generic;
 
 namespace qwik.coms.Commands.Secretary
 {
@@ -21,16 +21,14 @@ namespace qwik.coms.Commands.Secretary
             _secretary = secretary;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "secretary", "sec" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "secretary", "sec" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             _settings.Secretary = !_settings.Secretary;
             _settingsWriter.SaveSettings(_settings);
-            _output.Formatted("Secretary is now: {0}", _settings.Secretary ? "on" : "off");
+            var onOrOff = _settings.Secretary ? "on" : "off";
+            _output.Output($"Secretary is now: {onOrOff}");
             if (_settings.Secretary)
             {
                 _secretary.Start();

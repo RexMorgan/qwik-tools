@@ -3,7 +3,7 @@ using qwik.helpers.Settings;
 using qwik.helpers.Timer;
 using System;
 using System.Collections.Concurrent;
-using System.Text;
+using JetBrains.Annotations;
 
 namespace qwik.coms.Output
 {
@@ -36,12 +36,14 @@ namespace qwik.coms.Output
             _chatRateLimiter = chatRateLimiter;
         }
 
-        public void Formatted(string message, params object[] arguments)
+        public void Output(string message)
         {
-            var builder = new StringBuilder();
-            builder.Append(LeftAscii());
-            builder.AppendFormat(message, arguments);
-            ChatMessages.Enqueue(builder.ToString());
+            ChatMessages.Enqueue($"{LeftAscii()}{message}");
+        }
+
+        public void OutputFormatted(string message, params object[] arguments)
+        {
+            Output(string.Format(message, arguments));
         }
 
         private string LeftAscii()
@@ -49,15 +51,15 @@ namespace qwik.coms.Output
             var ascii = _settings.LeftAscii + " ";
             if (string.IsNullOrWhiteSpace(_settings.LeftAscii)) return string.Empty;
             if (!string.IsNullOrWhiteSpace(_settings.LeftAsciiColor))
-                ascii = string.Format("<font color=\"{1}\">{0}</font>", ascii, _settings.LeftAsciiColor);
+                ascii = $"<font color=\"{_settings.LeftAsciiColor}\">{ascii}</font>";
             if (!string.IsNullOrWhiteSpace(_settings.LeftAsciiFont))
-                ascii = string.Format("<font face=\"{1}\">{0}</font>", ascii, _settings.LeftAsciiFont);
+                ascii = $"<font face=\"{_settings.LeftAsciiFont}\">{ascii}</font>";
             if (_settings.LeftAsciiBold)
-                ascii = string.Format("<b>{0}</b>", ascii);
+                ascii = $"<b>{ascii}</b>";
             if (_settings.LeftAsciiItalic)
-                ascii = string.Format("<i>{0}</i>", ascii);
+                ascii = $"<i>{ascii}</i>";
             if (_settings.LeftAsciiUnderline)
-                ascii = string.Format("<u>{0}</u>", ascii);
+                ascii = $"<u>{ascii}</u>";
             return ascii;
         }
     }

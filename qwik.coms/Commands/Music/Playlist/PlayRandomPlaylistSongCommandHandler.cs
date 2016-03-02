@@ -1,7 +1,5 @@
 ﻿using qwik.chatscan;
 using qwik.coms.Output;
-using qwik.helpers;
-using qwik.helpers.Settings;
 using qwik.spotify;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,40 +8,38 @@ namespace qwik.coms.Commands.Music.Playlist
 {
     public class PlayRandomPlaylistSongCommandHandler : BaseCommandHandler
     {
-        private readonly IAppSettings _settings;
         private readonly IOutput _output;
         private readonly IPlayer _player;
 
-        public PlayRandomPlaylistSongCommandHandler(IAppSettings settings, IPlayer player, IOutput output)
+        public PlayRandomPlaylistSongCommandHandler(IPlayer player, IOutput output)
         {
-            _settings = settings;
             _player = player;
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "plr" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "plr" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
-            var playlist = _player.Playlists().SingleOrDefault(x => x.Name == _settings.SpotifyPlaylist);
+            var playlist = _player.CurrentPlaylist;
             if (playlist == null)
             {
-                _output.Formatted("Unable to find saved playlist: {0}, use command pl", _settings.SpotifyPlaylist);
+                _output.Output("No playlist set, to set one, use the command pl");
                 return;
             }
 
-            var playlistTracks = playlist.Tracks.ToList();
+            var playlistTracks = playlist.Tracks.ToArray();
             if (!string.IsNullOrWhiteSpace(arguments))
             {
-                playlistTracks = playlistTracks.Where(x => x.Artist.ToLower().Contains(arguments) || x.Name.ToLower().Contains(arguments)).ToList();
+                playlistTracks = playlistTracks.Where(x => x.Artist.ToLower().Contains(arguments) || x.Name.ToLower().Contains(arguments)).ToArray();
+                if (playlistTracks.Length == 0)
+                {
+                    playlistTracks = playlist.Tracks.ToArray();
+                    _output.Output($"No matches in playlist for: {arguments}");
+                }
             }
-            var random = Random.Rand(0, playlistTracks.Count);
-            var randomTrack = playlistTracks[random];
+            var randomTrack = playlistTracks.Random();
             _player.Play(randomTrack.TrackPtr);
-            _output.Formatted("Playing {1} by {0} [{2:mm\\:ss}]", randomTrack.Artist, randomTrack.Name, randomTrack.Duration);
         }
     }
 }

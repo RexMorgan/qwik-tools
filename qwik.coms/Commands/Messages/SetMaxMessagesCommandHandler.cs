@@ -18,27 +18,20 @@ namespace qwik.coms.Commands.Messages
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "maxm" }; }
-        }
-
-        public override bool RequiresArguments
-        {
-            get { return true; }
-        }
+        public override IEnumerable<string> Commands => new[] { "maxm" };
+        public override bool RequiresArguments => true;
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             int value;
             if (!int.TryParse(arguments, out value))
             {
-                _output.Formatted("{0} is not a valid number", arguments);
+                _output.Output($"{0} is not a valid number");
                 return;
             }
             _settings.MaxMessages = value;
             _settingsWriter.SaveSettings(_settings);
-            _output.Formatted("Your max messages has been saved: {0}", _settings.MaxMessages);
+            _output.Output($"Your max messages has been saved: {_settings.MaxMessages}");
         }
     }
 }

@@ -22,38 +22,32 @@ namespace qwik.coms.Commands.Music.Playlist
             _player = player;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "pl" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "pl" };
 
-        public override bool RequiresArguments
-        {
-            get { return true; }
-        }
+        public override bool RequiresArguments => true;
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             var playlists = _player.Playlists().Where(x => x.Name.ToLower().Contains(arguments.ToLower())).ToList();
             if (!playlists.Any())
             {
-                _output.Formatted("No playlist found containing: {0}", arguments);
+                _output.Output($"No playlist found containing: {arguments}");
                 return;
             }
 
             if (playlists.Count > 1)
             {
-                _output.Formatted("Multiple playlists found containing: {0}", arguments);
+                _output.Output($"Multiple playlists found containing: {arguments}, be more specific.");
                 for (var i = 0; i < playlists.Count; ++i)
                 {
-                    _output.Formatted("{0}. {1}", i + 1, playlists[i].Name);
+                    _output.Output($"{i+1}. {playlists[i].Name}");
                 }
                 return;
             }
 
             _settings.SpotifyPlaylist = playlists.Single().Name;
             _settingsWriter.SaveSettings(_settings);
-            _output.Formatted("Playlist set: {0}", _settings.SpotifyPlaylist);
+            _output.Output($"Playlist set: {_settings.SpotifyPlaylist}");
         }
     }
 }

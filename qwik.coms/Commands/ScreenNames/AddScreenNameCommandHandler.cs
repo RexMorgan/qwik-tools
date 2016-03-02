@@ -1,6 +1,5 @@
 ﻿using qwik.chatscan;
 using qwik.coms.Output;
-using qwik.helpers;
 using qwik.helpers.Chatters;
 using qwik.helpers.Settings;
 using System.Collections.Generic;
@@ -20,28 +19,22 @@ namespace qwik.coms.Commands.ScreenNames
             _settingsWriter = settingsWriter;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "addsn" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "addsn" };
 
-        public override bool RequiresArguments
-        {
-            get { return true; }
-        }
+        public override bool RequiresArguments => true;
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             var screenname = new ScreenName(arguments);
             if (_settings.ScreenNames.Contains(screenname))
             {
-                _output.Formatted("ScreenName is already added: {0}", screenname.Readable);
+                _output.Output($"ScreenName is already added: {screenname.Readable}");
                 return;
             }
 
             _settings.ScreenNames.Fill(screenname);
             _settingsWriter.SaveSettings(_settings);
-            _output.Formatted("ScreenName has been added: {0}", screenname.Readable);
+            _output.Output($"ScreenName has been added: {screenname.Readable}");
         }
     }
 }

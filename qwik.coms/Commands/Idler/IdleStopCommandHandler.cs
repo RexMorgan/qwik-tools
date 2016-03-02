@@ -13,10 +13,7 @@ namespace qwik.coms.Commands.Idler
             _idler = idler;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] {"back", "idleoff"}; }
-        }
+        public override IEnumerable<string> Commands => new[] {"back", "idleoff"};
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {

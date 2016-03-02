@@ -53,12 +53,13 @@ namespace qwik.coms
             prompt.Show();
 #endif
 
-            _output.Formatted("qwik.coms¹ loaded by [{0}]", _settings.Handle ?? "new user");
-            _output.Formatted("{0} commands", _commandHandlers.Count());
+            var handle = _settings.Handle ?? "new user";
+            _output.Output($"qwik.coms¹ loaded by [{handle}]");
+            _output.Output($"{_commandHandlers.Count()} commands");
 
             if (string.IsNullOrWhiteSpace(_settings.Handle))
             {
-                _output.Formatted("type user [handle]");
+                _output.Output("type user [handle]");
             }
 
             try
@@ -89,7 +90,7 @@ namespace qwik.coms
             _session.OnLoggedOut += ptr => Application.Exit();
             AppDomain.CurrentDomain.ProcessExit += (s, eventArgs) =>
             {
-                _output.Formatted("qwik.coms¹ unloaded by [{0}]", _settings.Handle);
+                _output.Output($"qwik.coms¹ unloaded by [{_settings.Handle}]");
                 Thread.Sleep(1000);
             };
         }

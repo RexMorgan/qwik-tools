@@ -18,21 +18,15 @@ namespace qwik.coms.Commands.Output.LeftAscii
             _output = output;
         }
 
-        public override bool RequiresArguments
-        {
-            get { return true; }
-        }
+        public override bool RequiresArguments => true;
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] {"lafont"}; }
-        }
+        public override IEnumerable<string> Commands => new[] {"lafont"};
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             _settings.LeftAsciiFont = arguments;
             _settingsWriter.SaveSettings(_settings);
-            _output.Formatted("Left ascii font updated to: {0}", _settings.LeftAsciiFont);
+            _output.Output($"Left ascii font updated to: {_settings.LeftAsciiFont}");
         }
     }
 }

@@ -33,7 +33,7 @@ namespace qwik.spotify.Sessions
         public event Action<TrackEndedEventArgs> OnEndOfTrack;
 
         public IntPtr SessionPtr { get; private set; }
-
+        
         private readonly Timer _timer = new Timer();
         private DateTime _nextProcessEventDateTime = DateTime.Now;
         private bool _immediatelyProcessEvents;
@@ -161,7 +161,7 @@ namespace qwik.spotify.Sessions
                 LoggedIn = true;
             }
 
-            if (OnLoggedIn != null) OnLoggedIn(session, error);
+            OnLoggedIn?.Invoke(session, error);
         }
 
         private void NotifyMainThreadHandler(IntPtr session)
@@ -200,16 +200,12 @@ namespace qwik.spotify.Sessions
 
         private void TrackEndedHandler(IntPtr session)
         {
-            if (OnEndOfTrack == null) return;
-
-            var eventArgs = new TrackEndedEventArgs(session);
-            OnEndOfTrack(eventArgs);
+            OnEndOfTrack?.Invoke(new TrackEndedEventArgs(session));
         }
 
         private void LoggedOutHandler(IntPtr session)
         {
-            if (OnLoggedOut == null) return;
-            OnLoggedOut(session);
+            OnLoggedOut?.Invoke(session);
         }
     }
 }

@@ -18,16 +18,13 @@ namespace qwik.coms.Commands.Output.LeftAscii
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] {"labold"}; }
-        }
+        public override IEnumerable<string> Commands => new[] {"labold"};
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             _settings.LeftAsciiBold = !_settings.LeftAsciiBold;
             _settingsWriter.SaveSettings(_settings);
-            _output.Formatted("Left ascii bold: {0}", _settings.LeftAsciiBold);
+            _output.Output($"Left ascii bold: {_settings.LeftAsciiBold}");
         }
     }
 }

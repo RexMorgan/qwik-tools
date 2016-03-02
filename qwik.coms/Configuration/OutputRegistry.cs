@@ -1,5 +1,5 @@
 ﻿using qwik.coms.Output;
-using StructureMap.Configuration.DSL;
+using StructureMap;
 
 namespace qwik.coms.Configuration
 {

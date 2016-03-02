@@ -16,19 +16,13 @@ namespace qwik.helpers.Chatters
             _lazyReadable = new Lazy<string>(() => Regexes.Spaces.Replace(LowerCased, string.Empty));
         }
 
-        public string Formatted { get; private set; }
+        public string Formatted { get; }
 
         [JsonIgnore]
-        public string LowerCased
-        {
-            get { return _lazyLowerCased.Value; }
-        }
+        public string LowerCased => _lazyLowerCased.Value;
 
         [JsonIgnore]
-        public string Readable
-        {
-            get { return _lazyReadable.Value; }
-        }
+        public string Readable => _lazyReadable.Value;
 
         protected bool Equals(ScreenName other)
         {
@@ -45,7 +39,7 @@ namespace qwik.helpers.Chatters
 
         public override int GetHashCode()
         {
-            return (Readable != null ? Readable.GetHashCode() : 0);
+            return Readable?.GetHashCode() ?? 0;
         }
     }
 }

@@ -17,22 +17,20 @@ namespace qwik.coms.Commands.Emotes
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] {"lcase"}; }
-        }
-
-        public override bool RequiresArguments
-        {
-            get { return true; }
-        }
+        public override IEnumerable<string> Commands => new[] {"lcase"};
+        public override bool RequiresArguments => true;
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             var chatters = _chatterSearcher.FindChatters(arguments).ToList();
             if (chatters.Any())
             {
-                _output.Formatted("Lower cased: {0}", string.Join(", ", chatters.Select(x => x.Readable)));
+                var joinedChatters = string.Join(", ", chatters.Select(x => x.Readable));
+                _output.Output($"Lower cased: {joinedChatters}");
+            }
+            else
+            {
+                _output.Output($"Couldn't find any chatters containing [{arguments}]");
             }
         }
     }

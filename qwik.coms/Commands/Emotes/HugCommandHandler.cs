@@ -20,15 +20,8 @@ namespace qwik.coms.Commands.Emotes
             _settings = settings;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] {"hug"}; }
-        }
-
-        public override bool RequiresArguments
-        {
-            get { return true; }
-        }
+        public override IEnumerable<string> Commands => new[] {"hug"};
+        public override bool RequiresArguments => true;
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
@@ -39,7 +32,7 @@ namespace qwik.coms.Commands.Emotes
 
         private void Hug(string chatter)
         {
-            _output.Formatted("[{0}] gives {1} a hug", _settings.Handle, chatter);
+            _output.Output($"[{_settings.Handle}] gives {chatter} a hug");
         }
     }
 }

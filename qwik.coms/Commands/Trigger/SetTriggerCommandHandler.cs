@@ -18,10 +18,7 @@ namespace qwik.coms.Commands.Trigger
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "trig", "trigger" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "trig", "trigger" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
@@ -32,7 +29,7 @@ namespace qwik.coms.Commands.Trigger
             _settingsWriter.SaveSettings(_settings);
 
             var triggerOutput = string.IsNullOrEmpty(trigger) ? "n/a" : trigger;
-            _output.Formatted("New trigger saved: {0}", triggerOutput);
+            _output.Output($"New trigger saved: {triggerOutput}");
         }
     }
 }

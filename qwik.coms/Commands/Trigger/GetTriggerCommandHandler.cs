@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using qwik.chatscan;
+﻿using qwik.chatscan;
 using qwik.coms.Output;
 using qwik.helpers.Settings;
+using System.Collections.Generic;
 
 namespace qwik.coms.Commands.Trigger
 {
@@ -16,15 +16,12 @@ namespace qwik.coms.Commands.Trigger
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "trig?", "trigger?" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "trig?", "trigger?" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             var triggerOutput = string.IsNullOrEmpty(_settings.Trigger) ? "n/a" : _settings.Trigger;
-            _output.Formatted("Current trigger is: {0}", triggerOutput);
+            _output.Output($"Current trigger is: {triggerOutput}");
         }
     }
 }

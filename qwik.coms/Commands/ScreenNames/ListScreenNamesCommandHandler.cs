@@ -17,15 +17,12 @@ namespace qwik.coms.Commands.ScreenNames
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "sns?" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "sns?" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
-            var screennames = _settings.ScreenNames.Select(x => x.Readable).ToList();
-            _output.Formatted("ScreenNames: {0}", string.Join(", ", screennames));
+            var screennames = string.Join(", ", _settings.ScreenNames.Select(x => x.Readable).ToArray());
+            _output.Output($"ScreenNames: {screennames}");
         }
     }
 }

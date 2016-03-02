@@ -23,16 +23,13 @@ namespace qwik.coms.Commands.Output.LeftAscii
             get { return true; }
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] {"lacolor"}; }
-        }
+        public override IEnumerable<string> Commands => new[] {"lacolor"};
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             _settings.LeftAsciiColor = arguments;
             _settingsWriter.SaveSettings(_settings);
-            _output.Formatted("Left ascii color updated to: {0}", _settings.LeftAsciiColor);
+            _output.Output($"Left ascii color updated to: {_settings.LeftAsciiColor}");
         }
     }
 }

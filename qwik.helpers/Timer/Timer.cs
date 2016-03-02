@@ -56,8 +56,7 @@ namespace qwik.helpers.Timer
 
         protected virtual void OnDelayElapsed(TimeSpan totalIdledTime, TimeSpan delay)
         {
-            var handler = DelayElapsed;
-            if (handler != null) handler(totalIdledTime, delay);
+            DelayElapsed?.Invoke(totalIdledTime, delay);
         }
     }
 }

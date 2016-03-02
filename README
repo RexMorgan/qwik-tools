@@ -2,12 +2,12 @@ This is not the greatest prog in the world, this is just a tribute.
 
 Bringing back the old days. Things like this is exactly what got me into programming.
 
-This is a work in progress and has only been tested on AOL 9.7.
+This is a work in progress and has only been tested on AOL 9.8.2.
 
-Install Visual Studio 2013 Community Edition here: http://go.microsoft.com/?linkid=9863608
+Install Visual Studio 2015 Community Edition here: https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx
 
 Request a spotify developer key here, it's instant: https://devaccount.spotify.com/my-account/
-Save the binary key to ~/qwik.spotify/spotify_appkey.key
+Save the binary key to ~/qwik.coms/spotify_appkey.key
 
 Choose a playlist with `pl <playlist name>` and `plr` to randomly play a song from the selected playlist.
 

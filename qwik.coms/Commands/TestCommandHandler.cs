@@ -17,17 +17,14 @@ namespace qwik.coms.Commands
             _keywordBrowser = keywordBrowser;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] {"test"}; }
-        }
+        public override IEnumerable<string> Commands => new[] {"test"};
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             var stopwatch = Stopwatch.StartNew();
             _keywordBrowser.Browse("welcome");
             stopwatch.Stop();
-            _output.Formatted("Command Completed in {0}ms", stopwatch.ElapsedMilliseconds);
+            _output.Output($"Command Completed in {stopwatch.ElapsedMilliseconds}ms");
         }
     }
 }

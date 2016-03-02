@@ -12,19 +12,8 @@ namespace qwik.coms.Commands.Navigation
         {
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] {"pr"}; }
-        }
-
-        protected override string AolKeyword
-        {
-            get { return "aol://2719:2-2-"; }
-        }
-
-        protected override string RoomType
-        {
-            get { return "private room"; }
-        }
+        public override IEnumerable<string> Commands => new[] {"pr"};
+        protected override string AolKeyword => "aol://2719:2-2-";
+        protected override string RoomType => "private room";
     }
 }

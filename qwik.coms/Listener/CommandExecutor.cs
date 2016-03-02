@@ -1,6 +1,8 @@
 ﻿using qwik.chatscan;
 using qwik.coms.Commands;
+using qwik.coms.Output;
 using qwik.helpers.Settings;
+using System;
 using System.Collections.Generic;
 
 namespace qwik.coms.Listener
@@ -9,7 +11,22 @@ namespace qwik.coms.Listener
     {
         private readonly IDictionary<string, ICommandHandler> _handlerLookup = new Dictionary<string, ICommandHandler>();
         private readonly IAppSettings _settings;
+#if DEBUG
+        private readonly IOutput _output;
 
+        public CommandExecutor(IEnumerable<ICommandHandler> commandHandlers, IAppSettings settings, IOutput output)
+        {
+            _settings = settings;
+            _output = output;
+            foreach (var handler in commandHandlers)
+            {
+                foreach (var command in handler.Commands)
+                {
+                    _handlerLookup.Add(command, handler);
+                }
+            }
+        }
+#else
         public CommandExecutor(IEnumerable<ICommandHandler> commandHandlers, IAppSettings settings)
         {
             _settings = settings;
@@ -21,6 +38,9 @@ namespace qwik.coms.Listener
                 }
             }
         }
+#endif
+
+
 
         public void Execute(ChatMessage message)
         {
@@ -36,8 +56,11 @@ namespace qwik.coms.Listener
             {
                 handler.Execute(arguments, command, message);
             }
-            catch
+            catch(Exception ex)
             {
+#if DEBUG
+                _output.Output(ex.Message);
+#endif
             }
         }
     }

@@ -28,18 +28,15 @@ namespace qwik.spotify
             Artists = artists;
         }
 
-        public IntPtr TrackPtr { get; private set; }
+        public IntPtr TrackPtr { get; }
 
-        public IEnumerable<string> Artists { get; private set; }
+        public IEnumerable<string> Artists { get; }
 
-        public string Artist
-        {
-            get { return Artists.Any() ? Artists.First() : string.Empty; }
-        }
+        public string Artist => Artists.Any() ? Artists.First() : string.Empty;
 
-        public string Name { get; private set; }
-        public TimeSpan Duration { get; private set; }
-        public int TrackNumber { get; private set; }
-        public IntPtr AlbumPtr { get; private set; }
+        public string Name { get; }
+        public TimeSpan Duration { get; }
+        public int TrackNumber { get; }
+        public IntPtr AlbumPtr { get; }
     }
 }

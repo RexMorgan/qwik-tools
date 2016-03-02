@@ -18,16 +18,13 @@ namespace qwik.coms.Commands.Output.LeftAscii
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] {"launderline"}; }
-        }
+        public override IEnumerable<string> Commands => new[] {"launderline"};
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             _settings.LeftAsciiUnderline = !_settings.LeftAsciiUnderline;
             _settingsWriter.SaveSettings(_settings);
-            _output.Formatted("Left ascii underline: {0}", _settings.LeftAsciiUnderline);
+            _output.Output($"Left ascii underline: {_settings.LeftAsciiUnderline}");
         }
     }
 }

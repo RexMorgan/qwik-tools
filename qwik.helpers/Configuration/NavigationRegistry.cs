@@ -1,5 +1,5 @@
 ﻿using qwik.helpers.Navigation;
-using StructureMap.Configuration.DSL;
+using StructureMap;
 
 namespace qwik.helpers.Configuration
 {

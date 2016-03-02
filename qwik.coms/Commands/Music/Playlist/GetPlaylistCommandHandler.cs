@@ -16,15 +16,12 @@ namespace qwik.coms.Commands.Music.Playlist
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "pl?" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "pl?" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             var playlist = string.IsNullOrWhiteSpace(_settings.SpotifyPlaylist) ? "n/a" : _settings.SpotifyPlaylist;
-            _output.Formatted("Current playlist: {0}", playlist);
+            _output.Output($"Current playlist: {playlist}");
         }
     }
 }

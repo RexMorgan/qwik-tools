@@ -18,9 +18,6 @@ namespace qwik.spotify.Configuration
             }
         }
 
-        public byte[] SpotifyApplicationKey
-        {
-            get { return StaticSpotifyApplicationKey; }
-        }
+        public byte[] SpotifyApplicationKey => StaticSpotifyApplicationKey;
     }
 }

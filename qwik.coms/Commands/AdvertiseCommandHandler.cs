@@ -16,15 +16,12 @@ namespace qwik.coms.Commands
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] {"adv", "advertise"}; }
-        }
+        public override IEnumerable<string> Commands => new[] {"adv", "advertise"};
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
-            _output.Formatted("qwik.coms¹ by [qwik]");
-            _output.Formatted("at the command of [{0}]", _settings.Handle);
+            _output.Output("qwik.coms¹ by [qwik]");
+            _output.Output($"at the command of [{_settings.Handle}]");
         }
     }
 }

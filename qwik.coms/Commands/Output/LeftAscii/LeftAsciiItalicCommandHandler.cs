@@ -18,16 +18,13 @@ namespace qwik.coms.Commands.Output.LeftAscii
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] {"laitalic"}; }
-        }
+        public override IEnumerable<string> Commands => new[] {"laitalic"};
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             _settings.LeftAsciiItalic = !_settings.LeftAsciiItalic;
             _settingsWriter.SaveSettings(_settings);
-            _output.Formatted("Left ascii italic: {0}", _settings.LeftAsciiItalic);
+            _output.Output($"Left ascii italic: {_settings.LeftAsciiItalic}");
         }
     }
 }

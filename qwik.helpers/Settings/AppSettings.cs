@@ -18,7 +18,7 @@ namespace qwik.helpers.Settings
         }
 
         public string Handle { get; set; }
-        public IList<ScreenName> ScreenNames { get; private set; }
+        public IList<ScreenName> ScreenNames { get; }
 
         private string _trigger;
 
@@ -28,8 +28,8 @@ namespace qwik.helpers.Settings
             set { _trigger = value; }
         }
 
-        public IList<Note> Notes { get; private set; }
-        public IList<Message> Messages { get; private set; }
+        public IList<Note> Notes { get; }
+        public IList<Message> Messages { get; }
         public int MaxMessages { get; set; }
         public int MessagesPerScreenName { get; set; }
 

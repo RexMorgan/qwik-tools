@@ -1,5 +1,5 @@
 ﻿using qwik.helpers.Settings;
-using StructureMap.Configuration.DSL;
+using StructureMap;
 
 namespace qwik.helpers.Configuration
 {
@@ -10,11 +10,7 @@ namespace qwik.helpers.Configuration
             For<IAppSettingsBuilder>().Singleton().Use<AppSettingsBuilder>();
             For<IAppSettingsWriter>().Singleton().Use<AppSettingsWriter>();
 
-            For<IAppSettings>().Singleton().UseSpecial(c => c.ConstructedBy("Building up settings", ctx =>
-            {
-                var builder = ctx.GetInstance<IAppSettingsBuilder>();
-                return builder.ReadSettings();
-            }));
+            For<IAppSettings>().Singleton().Use(ctx => ctx.GetInstance<IAppSettingsBuilder>().ReadSettings());
         }
     }
 }

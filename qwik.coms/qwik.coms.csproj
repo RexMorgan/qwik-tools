@@ -32,11 +32,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.dll</HintPath>
+    <Reference Include="FubuCore, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FubuCore.2.0.1.321\lib\FubuCore.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="StructureMap.Net4">
-      <HintPath>..\packages\structuremap.3.1.1.134\lib\net40\StructureMap.Net4.dll</HintPath>
+    <Reference Include="JetBrains.Annotations, Version=10.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.7.3\lib\net35\NAudio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap, Version=4.0.1.318, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.4.0.1.318\lib\net40\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap.Net4, Version=4.0.1.318, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.4.0.1.318\lib\net40\StructureMap.Net4.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
@@ -88,6 +102,7 @@
     <Compile Include="Configuration\IdlerRegistry.cs" />
     <Compile Include="Configuration\OutputRegistry.cs" />
     <Compile Include="Configuration\SecretaryRegistry.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="Idler\Idler.cs" />
     <Compile Include="Idler\IdlerFormatter.cs" />
     <Compile Include="Idler\IIdler.cs" />
@@ -123,6 +138,30 @@
     <Compile Include="SpotifyLogin.Designer.cs">
       <DependentUpon>SpotifyLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="spotify\Configuration\CoreRegistry.cs" />
+    <Compile Include="spotify\Configuration\ISettings.cs" />
+    <Compile Include="spotify\Configuration\Settings.cs" />
+    <Compile Include="spotify\Configuration\SpotifyRegistry.cs" />
+    <Compile Include="spotify\Errors\ErrorCode.cs" />
+    <Compile Include="spotify\Externals.cs" />
+    <Compile Include="spotify\IntPtrExtensions.cs" />
+    <Compile Include="spotify\IPlayer.cs" />
+    <Compile Include="spotify\Searches\Search.cs" />
+    <Compile Include="spotify\Searches\SearchType.cs" />
+    <Compile Include="spotify\Sessions\AudioBufferStats.cs" />
+    <Compile Include="spotify\Sessions\AudioDataReceivedEventArgs.cs" />
+    <Compile Include="spotify\Sessions\AudioFormat.cs" />
+    <Compile Include="spotify\Sessions\ConnectionType.cs" />
+    <Compile Include="spotify\Sessions\GetAudioBufferStatsEventArgs.cs" />
+    <Compile Include="spotify\Sessions\ISession.cs" />
+    <Compile Include="spotify\Sessions\PlaylistInfo.cs" />
+    <Compile Include="spotify\Sessions\Session.cs" />
+    <Compile Include="spotify\Sessions\SessionCallbacks.cs" />
+    <Compile Include="spotify\Sessions\SessionConfig.cs" />
+    <Compile Include="spotify\Sessions\TrackEndedEventArgs.cs" />
+    <Compile Include="spotify\SpotifyException.cs" />
+    <Compile Include="spotify\StringExtensions.cs" />
+    <Compile Include="spotify\Track.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +194,9 @@
     <None Include="settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="spotify_appkey.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -168,14 +210,15 @@
       <Project>{6EA1A5C6-8849-47B6-82CB-23205933C7AC}</Project>
       <Name>qwik.helpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\qwik.spotify\qwik.spotify.csproj">
-      <Project>{02D61216-040D-4F47-AD62-A47AEE9B816F}</Project>
-      <Name>qwik.spotify</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\Notes\" />
     <Folder Include="Notes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="libspotify.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

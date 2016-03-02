@@ -18,22 +18,15 @@ namespace qwik.coms.Commands.Handle
             _appSettingsWriter = appSettingsWriter;
         }
 
-        public override bool RequiresArguments
-        {
-            get { return true; }
-        }
-
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "handle", "user" }; }
-        }
+        public override bool RequiresArguments => true;
+        public override IEnumerable<string> Commands => new[] { "handle", "user" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             var handle = arguments;
             _appSettings.Handle = handle;
             _appSettingsWriter.SaveSettings(_appSettings);
-            _output.Formatted("Your handle is now [{0}]", handle);
+            _output.Output($"Your handle is now [{handle}]");
         }
     }
 }

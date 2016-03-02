@@ -1,5 +1,5 @@
 ﻿using qwik.coms.idler;
-using StructureMap.Configuration.DSL;
+using StructureMap;
 
 namespace qwik.coms.Configuration
 {

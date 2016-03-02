@@ -16,17 +16,11 @@ namespace qwik.coms.Commands.Messages
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "msgs" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "msgs" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
-            foreach (var message in _settings.Messages)
-            {
-                _output.Formatted("{0}: {1}", message.Sender.LowerCased, message.Body);
-            }
+            _settings.Messages.Each(message => _output.Output($"{message.Sender.LowerCased}: {message.Body}"));
         }
     }
 }

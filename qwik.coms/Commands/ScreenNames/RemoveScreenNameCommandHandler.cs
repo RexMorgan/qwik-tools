@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using qwik.chatscan;
+﻿using qwik.chatscan;
 using qwik.coms.Output;
-using qwik.helpers;
 using qwik.helpers.Chatters;
 using qwik.helpers.Settings;
+using System.Collections.Generic;
 
 namespace qwik.coms.Commands.ScreenNames
 {
@@ -20,28 +19,21 @@ namespace qwik.coms.Commands.ScreenNames
             _settingsWriter = settingsWriter;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "rmsn", "remsn", "delsn" }; }
-        }
-
-        public override bool RequiresArguments
-        {
-            get { return true; }
-        }
+        public override IEnumerable<string> Commands => new[] { "rmsn", "remsn", "delsn" };
+        public override bool RequiresArguments => true;
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             var screenname = new ScreenName(arguments);
             if (!_settings.ScreenNames.Contains(screenname))
             {
-                _output.Formatted("ScreenName not found: {0}", screenname.Readable);
+                _output.Output($"ScreenName not found: {screenname.Readable}");
                 return;
             }
 
             _settings.ScreenNames.Remove(screenname);
             _settingsWriter.SaveSettings(_settings);
-            _output.Formatted("ScreenName has been removed: {0}", screenname.Readable);
+            _output.Output($"ScreenName has been removed: {screenname.Readable}");
         }
     }
 }

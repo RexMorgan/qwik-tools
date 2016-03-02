@@ -13,10 +13,7 @@ namespace qwik.coms.Commands
             _session = session;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] {"exit", "quit"}; }
-        }
+        public override IEnumerable<string> Commands => new[] {"exit", "quit"};
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {

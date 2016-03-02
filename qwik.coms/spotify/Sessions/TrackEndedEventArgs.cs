@@ -9,6 +9,6 @@ namespace qwik.spotify.Sessions
             SessionPtr = sessionPtr;
         }
 
-        public IntPtr SessionPtr { get; private set; }
+        public IntPtr SessionPtr { get; }
     }
 }

@@ -21,8 +21,8 @@ namespace qwik.spotify.Sessions
             Tracks = tracks;
         }
 
-        public IntPtr PlaylistPtr { get; private set; }
-        public string Name { get; private set; }
-        public IEnumerable<TrackInfo> Tracks { get; private set; } 
+        public IntPtr PlaylistPtr { get; }
+        public string Name { get; }
+        public IEnumerable<TrackInfo> Tracks { get; } 
     }
 }

@@ -16,14 +16,11 @@ namespace qwik.coms.Commands.Output.LeftAscii
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "la?" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "la?" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
-            _output.Formatted("Left ascii is: {0}", _settings.LeftAscii);
+            _output.Output($"Left ascii is: {_settings.LeftAscii}");
         }
     }
 }

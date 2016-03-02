@@ -2,6 +2,10 @@
 using qwik.spotify.Sessions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using qwik.coms;
+using qwik.coms.Output;
+using qwik.helpers.Settings;
 
 namespace qwik.spotify
 {
@@ -12,20 +16,28 @@ namespace qwik.spotify
 
         TrackInfo Track(IntPtr track);
         IEnumerable<PlaylistInfo> Playlists();
+        TrackInfo CurrentTrack { get; }
+        PlaylistInfo CurrentPlaylist { get; }
     }
 
     public class Player : IPlayer
     {
         private readonly ISession _session;
+        private readonly IEnumerable<INextTrackStrategy> _nextTrackStrategies;
+        private readonly IAppSettings _appSettings;
+        private readonly IOutput _output;
 
         private readonly IWavePlayer _wavePlayer;
         private readonly BufferedWaveProvider _waveProvider;
 
         private int _stutterCount;
 
-        public Player(ISession session)
+        public Player(ISession session, IEnumerable<INextTrackStrategy> nextTrackStrategies, IAppSettings appSettings, IOutput output)
         {
             _session = session;
+            _nextTrackStrategies = nextTrackStrategies;
+            _appSettings = appSettings;
+            _output = output;
 
             _lazyPlaylists = new Lazy<IEnumerable<PlaylistInfo>>(() => _session.Playlists());
             
@@ -44,8 +56,12 @@ namespace qwik.spotify
 
         public void Play(IntPtr track)
         {
+            _currentTrackPtr = track;
             _wavePlayer.Play();
             _session.Play(track);
+
+            var currentTrack = CurrentTrack;
+            _output.Output($"Playing {currentTrack.Name} by {currentTrack.Artist} [{currentTrack.Duration:mm\\:ss}]");
         }
 
         public void Pause()
@@ -58,12 +74,17 @@ namespace qwik.spotify
             return new TrackInfo(track);
         }
 
+        private IntPtr _currentTrackPtr;
+        public TrackInfo CurrentTrack => Track(_currentTrackPtr);
+
         private readonly Lazy<IEnumerable<PlaylistInfo>> _lazyPlaylists;
 
         public IEnumerable<PlaylistInfo> Playlists()
         {
             return _lazyPlaylists.Value;
         }
+
+        public PlaylistInfo CurrentPlaylist => Playlists().SingleOrDefault(x => x.Name == _appSettings.SpotifyPlaylist);
 
         private void CheckStutter()
         {
@@ -89,7 +110,29 @@ namespace qwik.spotify
 
         private void TrackEnded(TrackEndedEventArgs trackEndedEventArgs)
         {
-            
+            var nextTrack = _nextTrackStrategies.Single(x => x.Enabled()).NextTrack(this);
+            if (nextTrack == null) return;
+
+            Play(nextTrack.TrackPtr);
+        }
+    }
+
+    public interface INextTrackStrategy
+    {
+        bool Enabled();
+        TrackInfo NextTrack(IPlayer player);
+    }
+
+    public class ShufflePlaylistNextTrackStrategy : INextTrackStrategy
+    {
+        public bool Enabled()
+        {
+            return true;
+        }
+
+        public TrackInfo NextTrack(IPlayer player)
+        {
+            return player.CurrentPlaylist.Tracks.Random();
         }
     }
 }

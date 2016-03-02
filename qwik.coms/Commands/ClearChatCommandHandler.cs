@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using qwik.chatscan;
+﻿using qwik.chatscan;
 using qwik.coms.Output;
 using qwik.helpers;
+using System.Collections.Generic;
 
 namespace qwik.coms.Commands
 {
@@ -14,15 +14,13 @@ namespace qwik.coms.Commands
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "clr", "clear" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "clr", "clear" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
+            // TODO: This freezes AOL and makes me have to restart it.
             Chat.Clear();
-            _output.Formatted("Chat has been cleared");
+            _output.Output("Chat has been cleared");
         }
     }
 }

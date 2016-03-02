@@ -52,31 +52,32 @@ namespace qwik.coms.Secretary
 
         private void LeaveMessageBlurb(TimeSpan x, TimeSpan y)
         {
-            _output.Formatted("Leave a message with my secretary, type .{0} <i>msg</i>", _settings.Handle);
+            _output.Output($"Leave a message with my secretary, type .{_settings.Handle} <i>msg</i>");
         }
 
         private void TakeMessage(ChatMessage chatMessage)
         {
-            var messageTrigger = string.Format(".{0} ", _settings.Handle).ToLower();
+            var messageTrigger = $".{_settings.Handle} ".ToLower();
             if (!chatMessage.Trigger(messageTrigger)) return;
 
             if (_settings.Messages.Count >= _settings.MaxMessages)
             {
-                _output.Formatted("Maximum number of messages reached: {0}", _settings.MaxMessages);
+                _output.Output($"Maximum number of messages reached: {_settings.MaxMessages}");
                 return;
             }
 
             var messagesLeftByScreenName = _settings.Messages.Count(x => x.Sender.Equals(chatMessage.Sender));
             if (messagesLeftByScreenName >= _settings.MessagesPerScreenName)
             {
-                _output.Formatted("You can't leave anymore messages, {0} ({1}/{2})", chatMessage.Sender.Formatted, messagesLeftByScreenName, _settings.MessagesPerScreenName);
+                _output.Output($"You can't leave anymore messages, {chatMessage.Sender.Formatted} ({messagesLeftByScreenName}/{_settings.MessagesPerScreenName})");
                 return;
             }
 
             var message = new Message(chatMessage.Sender, chatMessage.Message.Substring(messageTrigger.Length));
             _settings.Messages.Add(message);
             _settingsWriter.SaveSettings(_settings);
-            _output.Formatted("Your message has been saved, {0} ({1}/{2})", chatMessage.Sender.Formatted, ++messagesLeftByScreenName, _settings.MessagesPerScreenName);
+            ++messagesLeftByScreenName;
+            _output.Output($"Your message has been saved, {chatMessage.Sender.Formatted} ({messagesLeftByScreenName}/{_settings.MessagesPerScreenName})");
         }
     }
 }

@@ -16,14 +16,11 @@ namespace qwik.coms.Commands.Messages
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "maxm?" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "maxm?" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
-            _output.Formatted("Max messages is: {0}", _settings.MaxMessages);
+            _output.Output($"Max messages is: {_settings.MaxMessages}");
         }
     }
 }

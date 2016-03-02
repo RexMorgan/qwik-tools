@@ -16,14 +16,11 @@ namespace qwik.coms.Commands.Handle
             _appSettings = appSettings;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "handle?", "user?" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "handle?", "user?" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
-            _output.Formatted("Your handle is [{0}]", _appSettings.Handle);
+            _output.Output($"Your handle is [{_appSettings.Handle}]");
         }
     }
 }

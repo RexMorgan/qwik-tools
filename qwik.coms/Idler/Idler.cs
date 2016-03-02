@@ -24,14 +24,12 @@ namespace qwik.coms.idler
 
         protected virtual void OnIdlingStopped(TimeSpan idleDuration)
         {
-            var handler = IdlingStopped;
-            if (handler != null) handler(idleDuration);
+            IdlingStopped?.Invoke(idleDuration);
         }
 
         protected virtual void OnIdlingStarted(string reason)
         {
-            var handler = IdlingStarted;
-            if (handler != null) handler(reason);
+            IdlingStarted?.Invoke(reason);
         }
 
         public Idler(IOutput output, IAppSettings settings, IIdlerFormatter idlerFormatter)
@@ -54,7 +52,7 @@ namespace qwik.coms.idler
             IsIdling = true;
             _reason = reason;
             _timer = TimerFactory.Create(TimerType.Idler, TimeSpan.FromMinutes(1), NotifyChat);
-            _output.Formatted("[{0}] is going idle", _settings.Handle);
+            _output.Output($"[{_settings.Handle}] is going idle");
             OnIdlingStarted(_reason);
         }
 
@@ -62,7 +60,7 @@ namespace qwik.coms.idler
         {
             IsIdling = false;
             _reason = null;
-            _output.Formatted("[{0}] is no longer idle", _settings.Handle);
+            _output.Output($"[{_settings.Handle}] is no longer idle");
             OnIdlingStopped(_idleDuration);
             _timer = null;
             TimerFactory.Destroy(TimerType.Idler);
@@ -73,10 +71,10 @@ namespace qwik.coms.idler
         private void NotifyChat(TimeSpan totalTimeIdled, TimeSpan notificationInterval)
         {
             _idleDuration = totalTimeIdled;
-            _output.Formatted("[{0}] has been idle for {1}", _settings.Handle, _idlerFormatter.Format(totalTimeIdled));
+            _output.Output($"[{_settings.Handle}] has been idle for {_idlerFormatter.Format(totalTimeIdled)}");
             if (!string.IsNullOrWhiteSpace(_reason))
             {
-                _output.Formatted("reason: {0}", _reason);
+                _output.Output($"reason: {_reason}");
             }
         }
     }

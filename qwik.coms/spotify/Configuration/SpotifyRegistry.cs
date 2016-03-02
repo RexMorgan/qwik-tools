@@ -1,5 +1,6 @@
 ﻿using qwik.spotify.Sessions;
-using StructureMap.Configuration.DSL;
+using StructureMap;
+using StructureMap.Graph;
 
 namespace qwik.spotify.Configuration
 {
@@ -10,6 +11,12 @@ namespace qwik.spotify.Configuration
             For<IPlayer>().Singleton().Use<Player>();
             For<ISession>().Singleton().Use<Session>();
             For<ISettings>().Singleton().Use<Settings>();
+
+            Scan(_ =>
+            {
+                _.TheCallingAssembly();
+                _.AddAllTypesOf<INextTrackStrategy>();
+            });
         }
     }
 }

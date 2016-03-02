@@ -18,17 +18,14 @@ namespace qwik.coms.Commands.Messages
             _output = output;
         }
 
-        public override IEnumerable<string> Commands
-        {
-            get { return new[] { "rmmsgs", "delmsgs" }; }
-        }
+        public override IEnumerable<string> Commands => new[] { "rmmsgs", "delmsgs" };
 
         public override void Execute(string arguments, string command, ChatMessage chatMessage)
         {
             var messageCount = _settings.Messages.Count;
             _settings.Messages.Clear();
             _settingsWriter.SaveSettings(_settings);
-            _output.Formatted("{0} messages have been deleted", messageCount);
+            _output.Output($"{messageCount} messages have been deleted");
         }
     }
 }

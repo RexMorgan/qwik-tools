@@ -1,4 +1,4 @@
-﻿namespace qwik.spotify.Configuration
+﻿namespace qwik.coms.spotify.Configuration
 {
     public interface ISettings
     {

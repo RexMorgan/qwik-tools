@@ -1,4 +1,4 @@
-namespace qwik.spotify.Sessions
+namespace qwik.coms.spotify.Sessions
 {
     public struct AudioFormat
     {

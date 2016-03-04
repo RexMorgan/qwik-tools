@@ -1,6 +1,6 @@
 ﻿using StructureMap;
 
-namespace qwik.spotify.Configuration
+namespace qwik.coms.spotify.Configuration
 {
     public class CoreRegistry : Registry
     {

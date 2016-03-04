@@ -1,6 +1,6 @@
 ﻿using qwik.chatscan;
-using qwik.spotify.Sessions;
 using System.Collections.Generic;
+using qwik.coms.spotify.Sessions;
 
 namespace qwik.coms.Commands
 {

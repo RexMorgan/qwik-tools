@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace qwik.spotify.Configuration
+namespace qwik.coms.spotify.Configuration
 {
     public class Settings : ISettings
     {

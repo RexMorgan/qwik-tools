@@ -146,6 +146,8 @@
     <Compile Include="spotify\Externals.cs" />
     <Compile Include="spotify\IntPtrExtensions.cs" />
     <Compile Include="spotify\IPlayer.cs" />
+    <Compile Include="spotify\NextTrackStrategies\INextTrackStrategy.cs" />
+    <Compile Include="spotify\NextTrackStrategies\ShufflePlaylistNextTrackStrategy.cs" />
     <Compile Include="spotify\Searches\Search.cs" />
     <Compile Include="spotify\Searches\SearchType.cs" />
     <Compile Include="spotify\Sessions\AudioBufferStats.cs" />

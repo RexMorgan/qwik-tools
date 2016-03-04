@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace qwik.spotify
+namespace qwik.coms.spotify
 {
     public class TrackInfo
     {

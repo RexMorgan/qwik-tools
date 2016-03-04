@@ -1,8 +1,8 @@
 ﻿using qwik.chatscan;
 using qwik.coms.Output;
-using qwik.spotify;
 using System.Collections.Generic;
 using System.Linq;
+using qwik.coms.spotify;
 
 namespace qwik.coms.Commands.Music.Playlist
 {

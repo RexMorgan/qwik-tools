@@ -1,6 +1,6 @@
 using System;
 
-namespace qwik.spotify.Sessions
+namespace qwik.coms.spotify.Sessions
 {
     public class TrackEndedEventArgs : EventArgs
     {

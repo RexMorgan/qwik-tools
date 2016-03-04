@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace qwik.spotify
+namespace qwik.coms.spotify
 {
     public static class StringExtensions
     {

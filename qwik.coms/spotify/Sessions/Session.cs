@@ -1,12 +1,12 @@
-﻿using qwik.spotify.Configuration;
-using qwik.spotify.Errors;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Timers;
+using qwik.coms.spotify.Configuration;
+using qwik.coms.spotify.Errors;
 
-namespace qwik.spotify.Sessions
+namespace qwik.coms.spotify.Sessions
 {
     public class Session : ISession
     {

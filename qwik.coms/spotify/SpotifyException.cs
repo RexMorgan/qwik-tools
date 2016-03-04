@@ -1,7 +1,7 @@
 ﻿using System;
-using qwik.spotify.Errors;
+using qwik.coms.spotify.Errors;
 
-namespace qwik.spotify
+namespace qwik.coms.spotify
 {
     public class SpotifyException : Exception
     {

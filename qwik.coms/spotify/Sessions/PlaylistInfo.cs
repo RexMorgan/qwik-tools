@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace qwik.spotify.Sessions
+namespace qwik.coms.spotify.Sessions
 {
     public class PlaylistInfo
     {

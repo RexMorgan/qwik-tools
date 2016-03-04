@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using qwik.chatscan;
-using qwik.spotify;
+using qwik.coms.spotify;
 
 namespace qwik.coms.Commands.Music.Search
 {

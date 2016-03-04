@@ -1,13 +1,13 @@
-﻿using NAudio.Wave;
-using qwik.spotify.Sessions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using qwik.coms;
+using NAudio.Wave;
 using qwik.coms.Output;
+using qwik.coms.spotify.NextTrackStrategies;
+using qwik.coms.spotify.Sessions;
 using qwik.helpers.Settings;
 
-namespace qwik.spotify
+namespace qwik.coms.spotify
 {
     public interface IPlayer
     {
@@ -114,25 +114,6 @@ namespace qwik.spotify
             if (nextTrack == null) return;
 
             Play(nextTrack.TrackPtr);
-        }
-    }
-
-    public interface INextTrackStrategy
-    {
-        bool Enabled();
-        TrackInfo NextTrack(IPlayer player);
-    }
-
-    public class ShufflePlaylistNextTrackStrategy : INextTrackStrategy
-    {
-        public bool Enabled()
-        {
-            return true;
-        }
-
-        public TrackInfo NextTrack(IPlayer player)
-        {
-            return player.CurrentPlaylist.Tracks.Random();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace qwik.spotify.Errors
+﻿namespace qwik.coms.spotify.Errors
 {
     public enum ErrorCode
     {

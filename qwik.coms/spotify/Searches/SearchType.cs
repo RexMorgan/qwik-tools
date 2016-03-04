@@ -1,4 +1,4 @@
-﻿namespace qwik.spotify.Searches
+﻿namespace qwik.coms.spotify.Searches
 {
     public enum SearchType
     {

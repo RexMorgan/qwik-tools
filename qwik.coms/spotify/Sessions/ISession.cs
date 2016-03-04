@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using qwik.spotify.Errors;
+using qwik.coms.spotify.Errors;
 
-namespace qwik.spotify.Sessions
+namespace qwik.coms.spotify.Sessions
 {
     public interface ISession
     {

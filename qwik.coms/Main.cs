@@ -6,12 +6,12 @@ using qwik.coms.Secretary;
 using qwik.helpers;
 using qwik.helpers.Chatters;
 using qwik.helpers.Settings;
-using qwik.spotify;
-using qwik.spotify.Sessions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using qwik.coms.spotify;
+using qwik.coms.spotify.Sessions;
 using StructureMap;
 
 namespace qwik.coms

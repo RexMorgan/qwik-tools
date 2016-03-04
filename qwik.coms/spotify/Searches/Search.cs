@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using qwik.spotify.Errors;
+using qwik.coms.spotify.Errors;
 
-namespace qwik.spotify.Searches
+namespace qwik.coms.spotify.Searches
 {
     public class Search : IDisposable
     {

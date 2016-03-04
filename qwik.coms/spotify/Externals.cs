@@ -1,10 +1,10 @@
-﻿using qwik.spotify.Errors;
-using qwik.spotify.Searches;
-using qwik.spotify.Sessions;
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
+using qwik.coms.spotify.Errors;
+using qwik.coms.spotify.Searches;
+using qwik.coms.spotify.Sessions;
 
-namespace qwik.spotify
+namespace qwik.coms.spotify
 {
     public static class Externals
     {
